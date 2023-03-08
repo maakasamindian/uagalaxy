@@ -1,6 +1,3 @@
-
- 
- //====================================================================================================
  var firebaseConfig = {
     apiKey: "AIzaSyBr2Ld829X4fDpbTi-GKYFZVquPt5WklJ4",
   authDomain: "auworld.firebaseapp.com",
@@ -13,18 +10,19 @@
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
   firebase.analytics();
-  
+
 function upload(){
     //get your image
     var image=document.getElementById('image').files[0];
     //get your blog text
     var posttitle=document.getElementById('title').value;
-    var postdataname=document.getElementById('dataname').value;
-    var postuploadate=document.getElementById('uploaddate').value;
+    var postdaname=document.getElementById('dataname').value;
+    var postalt=document.getElementById('alt').value;
+    var pictitle=document.getElementById('Ptitle').value;
     var postkeyowrds=document.getElementById('keywords').value;
     var postabout=document.getElementById('about').value;
+    var postdate=document.getElementById('date').value;
     var postid=document.getElementById('id').value;
-    var postid2=document.getElementById('id-2').value;
     //get image name
     var imageName=image.name;
     //firebase storage reference
@@ -47,13 +45,14 @@ function upload(){
            //get your image download url here and upload it to databse
            //our path where data is stored ...push is used so that every post have unique id
            firebase.database().ref('blogs/').push().set({
-                  postaboutau:postabout,
-                 postdatanameau:postdataname,
-                 postdateau:postuploadate,
+                 postaltau:postalt,
+                 postaboutau:postabout,
+                 postdanameau:postdaname,
+                 postdateau:postdate,
                  postidau:postid,
-                  postid2au:postid2,
                  postkeyowrdsau:postkeyowrds,
                  posttitleau:posttitle,
+                 pisttitleau:pictitle,
                  imageURL:downloadURL
            },function(error){
                if(error){
@@ -89,55 +88,32 @@ function getdata(){
       //we have to pass our data to for loop to get one by one
       //we are passing the key of that post to delete it from database
       for(let[key,value] of Object.entries(data)){
-        posts_div.innerHTML = 
-        "<div class='au-postcard' data-name='"+value.postdatanameau+"' id ='"+value.postidau+"' style ='height: fit-content; '>"+
-        "<div class='name' style='display:none;'>"+value.postkeyowrdsau+"</div>"+
-    "<div class ='au-post-user '>"+
-        "<div class ='au-about-pic-user '>"+
-            "<div class='au-user-img-holder animated-bg'>"+ 
-		     "<img class='au-user-img image' src='auworld/img/post-dp.png' alt='user profile pic'>"+ 
-	      "</div>"+ 
-            "<div class ='au-user-about '>"+
-            "<strong class ='au-user-name content-hide '>uagalaxy</strong>"+
-            "<small class ='au-post-date content-hide '>"+value.postdateau+"</small>"+
-             "<span style='margin-bottom: 5px;' class='animated-bg animated-bg-text animat-bg'></span>"+ 
-			 "<span class='animated-bg animated-bg-text  animat-bg'></span>"+ 
-            "</div>"+
-        "</div>"+
-        "<div class ='au-post-menu'>"+
-           "<svg xmlns ='http://www.w3.org/2000/svg ' viewBox ='436.738 0.762 63.262 205.03 ' width ='100% ' height ='100% '>"+
-            "<ellipse cx ='470 ' cy ='25 ' rx ='20 ' ry ='20 '/>"+
-            "<ellipse cx ='470 ' cy ='100 ' rx ='20 ' ry ='20 '/>"+
-            "<ellipse cx ='470 ' cy ='175 ' rx ='20 ' ry ='20 '/>"+
-           "</svg>"+
-        "</div>"+
-    "</div>"+
-	 "<div class='au-card-img-holder animated-bg'>"+ 
-		 "<embed class='au-card-img image' onclick='imageBig(this)'  title='"+ value.posttitleau+"' src='"+value.imageURL+"' alt='"+ value.posttitleau+"'>"+ 
-	 "</div>"+ 
-	 "<div class='au-card-content'>"+ 
-		 "<div class='au-post-about'>"+ 
-		   "<div class='au-post-tike'>"+ 
-			 "<p class='au-post-title content-hide'>"+ value.posttitleau+"</p>"+ 
-	         "<p class='animated-bg animated-bg-title animat-bg'>&nbsp;</p>"+ 
-			 "<div id='"+value.postid2au+"' class='au-post-like animated-bg counter counter1 '>"+ 
-               "<ul>"+ 
-                 "<li data-action='like' class='content-hide'>"+ 
-                 "<span class='icon'><svg width='50' height='50' viewBox='0 0 512 512'><path d='M256,360a16,16,0,0,1-9-2.78c-39.3-26.68-56.32-45-65.7-56.41-20-24.37-29.58-49.4-29.3-76.5.31-31.06,25.22-56.33,55.53-56.33,20.4,0,35,10.63,44.1,20.41a6,6,0,0,0,8.72,0c9.11-9.78,23.7-20.41,44.1-20.41,30.31,0,55.22,25.27,55.53,56.33.28,27.1-9.31,52.13-29.3,76.5-9.38,11.44-26.4,29.73-65.7,56.41A16,16,0,0,1,256,360Z'></path></svg></span>"+ 
-                 "<span class='count'>signup</span>"+ 
-               "</li>"+ 
-			   "<span style='height: 40px;width: 40px;' class='animated-bg-text animat-bg'></span>"+ 
-              "</ul>"+ 
-			 "</div>"+ 
-		  "</div>"+ 
-		   "<p class='au-post-descs'>"+ 
-			 "<span class='au-post-desc content-hide'>"+value.postaboutau+"</span>"+ 
-			 "<span class='animated-bg animated-bg-text dummy-txt animat-bg'>&nbsp;</span>"+ 
-			 "<span class='animated-bg animated-bg-text dummy-txt animat-bg'>&nbsp;</span>"+ 
-		   "</p>"+ 
-		 "</div>"+ 
-	 "</div>"+ 
- "</div>"+posts_div.innerHTML;
+        posts_div.innerHTML= 
+          "<div class='card' data-name='"+value.postdanameau+"'>"+
+          "<div class='name' style='display:none;'>"+value.postkeyowrdsau+"</div>"+
+	      "<div class='card-header animated-bg'>"+
+		  "<img title='"+value.posttitleau+"' class='image' src='"+value.imageURL+"' alt='"+value.postaltau+"'></div>"+
+	      "<div class='card-content'>"+
+          "<div style='color: black;justify-content: space-between'>"+
+		  "<h3 class='card-title animated-bg animated-bg-text dmwhite'>"+value.pisttitleau+"</h3></div>"+
+          "<div id='"+value.postidau+"' class='counter counter1 postl animated-bg animated-bg-text'>"+
+          "<ul>"+
+          "<li data-action='like'>"+
+          "<span class='icon'><svg width='40' height='40' viewBox='0 0 512 512'><path d='M256,360a16,16,0,0,1-9-2.78c-39.3-26.68-56.32-45-65.7-56.41-20-24.37-29.58-49.4-29.3-76.5.31-31.06,25.22-56.33,55.53-56.33,20.4,0,35,10.63,44.1,20.41a6,6,0,0,0,8.72,0c9.11-9.78,23.7-20.41,44.1-20.41,30.31,0,55.22,25.27,55.53,56.33.28,27.1-9.31,52.13-29.3,76.5-9.38,11.44-26.4,29.73-65.7,56.41A16,16,0,0,1,256,360Z'/></svg></span>"+
+          "<span class='count dmwhite'>wait</span>"+
+          "</li>"+
+          "</ul>"+
+          "</div>"+
+		  "<p class='card-excerpt' style='margin-top: 0px;'>"+
+		  "<span class='animated-bg animated-bg-text dmwhite'>"+value.postaboutau+"</span>"+
+          "<span class='animated-bg animated-bg-text dmwhite'></span>"+
+          "</p>"+
+		  "<div class='author'>"+
+	      "<div class='profile-img animated-bg'>&nbsp;</div>"+
+		  "<div class='author-info'>"+
+	      "<strong class='animated-bg animated-bg-text publisher dmwhite'  style='color: #026992;'>&nbsp;</strong>"+
+		  "<small class='animated-bg animated-bg-text date dmwhite' style='content-visibility: hidden;'>"+value.postdateau+"</small>"+
+			"</div></div></div></div>"+posts_div.innerHTML
       ;}
 
     $(".js-container script").load('auworld/js/after.js');

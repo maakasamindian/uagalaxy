@@ -1,254 +1,136 @@
-const themeToggler = document.querySelector(".theme-switch"),
- prefersDarkScheme = window.matchMedia("(prefers-color-scheme: dark)"),
- mainTabs = document.querySelector(".main-tabs"),
- mainSliderCircle = document.querySelector(".main-slider-circle"),
- roundButtons = document.querySelectorAll(".round-button"),
- content = document.querySelector(".app"),
- tabHome = document.getElementById("tab-home"),
- tabPost = document.getElementById("tab-posts"),
- tabContact = document.getElementById("tab-contact"),
- tabAbout = document.getElementById("tab-about"),
- tabHomeBtn = document.getElementById("tab-1"),
- tabPostBtn = document.getElementById("tab-2"),
- tabContactBtn = document.getElementById("tab-3"),
- tabAboutBtn = document.getElementById("tab-4"),
- notifiContent = document.querySelector(".notifi-lists");
+const 
+ nav2 = document.getElementById('ua-2'),
+ inpu = document.querySelectorAll('.in-pu'),
+ nav1 = document.getElementById('ua-3'),
+ nav4 = document.getElementById('ua-1'),
+ setting = document.querySelector('.setting'),
+ seton = document.querySelector('.seton'),
+ setoff = document.querySelector('.setoff'),
+ loader = document.querySelector('.loader'),
+ topost = document.querySelector(".f1_ab"),
+ toabout = document.querySelector('.f2_ab'),
+ download= document.querySelector(".download"),
+ page1 = document.querySelector('.page1'),
+ r1 = document.querySelector('#nav-4'),
+ r2 = document.querySelector('#nav-2'),
+ r3 = document.querySelector('#nav-3'),
+ r4 = document.querySelector('#nav-4');
 
-mainTabs.addEventListener("click", (event) => {
-  if (event.target.classList.contains("round-button")) {
-    mainSliderCircle.classList.remove("animate-jello");
-    void mainSliderCircle.offsetWidth;
-    mainSliderCircle.classList.add("animate-jello");
-  }
-});
-
-if(prefersDarkScheme.matches){
-    setNotify('your device is in DARK mode, open setting to make this web app in dark mode','setting')
-}else{
-    document.body.classList.remove("light-theme")
+anim.onclick = ()=>{
+   inpu.forEach(bgs => { bgs.classList.add('in-pua') });
+   setting.classList.add('hide');
+  setting.classList.remove('display');
+  document.querySelector(".page3").classList.add('acton');
+  document.querySelector(".page1").classList.remove('acton');
+  document.querySelector(".page2").classList.remove('acton');
+  document.querySelector(".page4").classList.remove('acton');
 }
-
-themeToggler.addEventListener("click", function () {
-  if (prefersDarkScheme.matches) {
-    document.body.classList.toggle("light-theme");
-  } else {
-    document.body.classList.toggle("dark-theme");
-  }
-});
-// store the relationship between hash & tab id
-const hashes = new Map([
-    ["/", "tab-1"],
-    ["#posts", "tab-2"],
-    ["#contact", "tab-3"],
-    ["#about", "tab-4"],
-]);
-
-// store the relationship between tab id and contents
-const data = new Map([
-    [
-        "tab-1",
-        {
-            url: "/"
-        },
-    ],
-    [
-        "tab-2",
-        {
-            url: "#posts",
-        },
-    ],
-    [
-        "tab-3",
-        {
-            url: "#contact",
-        },
-    ],
-    [
-        "tab-4",
-        {
-            url: "#about",
-        },
-    ],
-]);
-
-mainTabs.addEventListener("click", function (event) {
-    if (!event.target.id) return;
-    update(event.target.id);
-});
-
-const update = (tabId) => {
-    // remove the active class of the previously selected tab
-    const currentTab = mainTabs.querySelector(".active");
-
-    if (currentTab.id != tabId) {
-        currentTab.classList.remove("active");
-        document.querySelectorAll(".input-radio").forEach(function (i) {i.removeAttribute("checked");});
-    }
-    // add active class to the selected tab
-    const selectedTab = document.getElementById(tabId);
-    selectedTab.classList.add("active");
-    const entry = data.get(tabId);
-        const  wit = selectedTab.getAttribute("for");
-        document.getElementById(wit).setAttribute("checked", "");
+nav2.onclick = ()=>{
+  inpu.forEach(bgs => { bgs.classList.remove('in-pua') });
+  setting.classList.add('hide');
+  setting.classList.remove('display');
+  document.querySelector(".page2").classList.add('acton');
+  document.querySelector(".page1").classList.remove('acton');
+  document.querySelector(".page3").classList.remove('acton');
+  document.querySelector(".page4").classList.remove('acton');
   
-
-    if (entry) {
-         // update the URL
-        history.pushState(null, "", entry.url);
-    }
-}; 
-(() => {
-    const tabId = hashes.get(window.location.hash);
-    // update the tab
-    if (tabId) update(tabId);
-})(); 
-//====================document title========================================
-if (window.location == window.origin + "/#posts") {
-    document.title = "posts | uagalaxy";
 }
-tabAboutBtn.addEventListener("click", function(){
-    document.title = "about | uagalaxy";
-})
-tabPostBtn.addEventListener("click", function(){
-    document.title = "posts | uagalaxy";
-})
-tabContactBtn.addEventListener("click", function(){
-    document.title = "contact | uagalaxy";
-})
-tabHomeBtn.addEventListener("click", function(){
-    document.title = "uagalaxy";
+nav1.onclick = ()=>{
+  inpu.forEach(bgs => { bgs.classList.remove('in-pua') });
+  setting.classList.add('hide');
+  setting.classList.remove('display');
+  document.querySelector(".page1").classList.add('acton');
+  document.querySelector(".page2").classList.remove('acton');
+  document.querySelector(".page3").classList.remove('acton');
+  document.querySelector(".page4").classList.remove('acton');
+}
+
+      
+function alertrc() {
+  alert('right click is disable!!');
+}
+function hide() {
+  loader.classList.add('hide');
+}
+toabout.onclick = ()=>{
+  inpu.forEach(bgs => { bgs.classList.add('in-pua') });
+}
+nav4.onclick = ()=>{
+inpu.forEach(bgs => { bgs.classList.remove('in-pua') });
+setting.classList.add('hide');
+setting.classList.remove('display');
+document.querySelector(".page4").classList.add('acton');
+  document.querySelector(".page2").classList.remove('acton');
+  document.querySelector(".page3").classList.remove('acton');
+  document.querySelector(".page1").classList.remove('acton');
+}
+seton.onclick = ()=>{
+  setting.classList.add('display');
+  setting.classList.remove('hide');
+}
+setoff.onclick = ()=>{
+  setting.classList.add('hide');
+  setting.classList.remove('display');
+}
+topost.onclick = ()=> {
+  setTimeout(getcardData, 2500);
+}
+window.onload= ()=>{ //after window loaded
+  Particles.init({selector: ".hsw"});
+  loader.style.display = 'flex';
+  document.querySelector('#app').style.display ='';
+  document.querySelector('.fh').style.display ='none';
+
+}
+
+document.querySelector(".close").onclick = ()=>{
+    document.querySelector(".close").classList.remove('show');
+    document.querySelector(".close").classList.add('hide');
+    profilescreen.classList.remove('show');
+    profilescreen.classList.add('hide');
+    previewBox.classList.add('hide');
+      previewBox.classList.remove('show');
+}
+
+document.querySelector(".homedp").onclick = ()=>{
+    document.querySelector(".close").classList.remove('hide');
+    document.querySelector(".close").classList.add('show');
+    profilescreen.classList.remove('hide');
+    profilescreen.classList.add('show');
+}
+setTimeout(hide,4800);
+function onContextMenu(e){
+    e.preventDefault();
+    document.addEventListener('contextmenu', onContextMenu, false);
+    setTimeout(alertrc, 0);
+}
+document.addEventListener('contextmenu', onContextMenu, false);
+var myDate = new Date();
+    var hrs = myDate.getHours();
+
+    var greet;
+
+    if (hrs < 12)
+        greet = 'Hlw,<br><p class="greet">Good Morning</p>';
+    else if (hrs >= 12 && hrs <= 17)
+        greet = 'Hlw,<br><p class="greet">Good Afternoon<p>';
+    else if (hrs >= 17 && hrs <= 24)
+        greet = 'Hlw,<br><p class="greet">Good Evening<p>';
+
+document.getElementById('lblGreetings').innerHTML ='<h1>' + greet +'<h1>'
+
+var particles = Particles.init({
+  selector: ".hsw",
+  color: ["#00ffe7", "#add8e6", "#00b4ef"],
+  connectParticles: true,
+   responsive: [
+    {
+      breakpoint: 800,
+      options: {
+        color: ["#00ffe7", "#add8e6", "#00b4ef"],
+        maxParticles: 40,
+        connectParticles: true
+      }
+    }
+  ]
 });
-window.onload = function () {
-  let pageTitle = document.title;
-  let attentionMessage = "sleeping...";
-
-  document.addEventListener("visibilitychange", function (e) {
-    let isPageActive = !document.hidden;
-    if (!isPageActive) {
-      if (document.title === attentionMessage) {
-          document.title = pageTitle;
-         favicon.href = "auworld/img/favicon.png";
-    } else {
-        document.title = attentionMessage;
-        favicon.href = "auworld/img/sleeping.png";
-    }
-    }else {
-      document.title = pageTitle;
-    }
-  });
-  document.addEventListener("visibilitychange", function (e) {
-    if (!document.hidden) {
-      document.title = pageTitle;
-      favicon.href = "auworld/img/favicon.png";
-    }
-  });  
-};
-
-//========================system =========================================
-document.querySelector(".fake-search-input").onkeyup = function(e){
-   let userInput = document.querySelector(".fake-search-input").value;
-   document.querySelector("#ua-search-box").value = userInput;
-   searching(e);
-   if (e.target.value) {
-       document.querySelector(".fake-list").style.display = "flex"
-   } else {
-       document.querySelector(".fake-list").style.display = "none"
-   }  
-   document.querySelector(".search .autocom-box").style.display = "none";
-   document.querySelector("label.placehoder").style.display = "none";
-
-}
-
-document.querySelector("#cursor").onclick = ()=> {
-    if (document.querySelector("#user-custom-style").innerHTML === "") {
-        document.querySelector("#user-custom-style").innerHTML = "html,html *,body,body * {cursor: none;}";
-    } else {
-        document.querySelector("#user-custom-style").innerHTML = "";
-    }
-    document.querySelector(".cursor-dot").classList.toggle("hide")
-    document.querySelector(".cursor-dot-outline").classList.toggle("hide")
-};
-if (this.document.querySelector("#notification").hasAttribute("au-showNotification")) {
-    document.querySelector(".is-notifi").style.display = "block";
-} else {
-    document.querySelector(".is-notifi").style.display = "none";
-}
-
-window.addEventListener("click",function(){
- if (this.document.querySelector("#notification").hasAttribute("au-showNotification")) {
-    document.querySelector(".is-notifi").style.display = "block";
-} else {
-    document.querySelector(".is-notifi").style.display = "none";
-}
-})
-
-if (document.getElementById("for-tab-3").hasAttribute("checked")) {
-    $(tabContact).load('auworld/pages/contact.txt');
-    tabContactBtn.removeAttribute("onclick")
-} else {
-    tabContact.innerHTML = "";
-}
-if (document.getElementById("for-tab-4").hasAttribute("checked")) {
-    $(tabAbout).load('auworld/pages/about.txt');
-    tabAboutBtn.removeAttribute("onclick")
-} else {
-    tabContact.innerHTML = "";
-}
-content.onclick =()=>{
-    document.querySelector("#setting").checked = false;
-    document.querySelector("#notification").checked = false;
-}
-mainTabs.onclick =()=>{
-    document.querySelector("#setting").checked = false;
-    document.querySelector("#notification").checked = false;
-}
-
-function checkInputs(e) {
-
-const username = document.getElementById('name');
-const massage = document.getElementById('message');
-	// trim to remove the whitespaces
-	const usernameValue = username.value.trim();
-	const massageValue = massage.value.trim();
-	
-	if(massageValue === '') {
-		setErrorFor(massage, 'message cannot be blank');
-        document.getElementById('au_massagesubmit').setAttribute("disabled","")
-	} else {
-        if(usernameValue === '') {
-		setErrorFor(username, 'name cannot be blank');
-         document.getElementById('au_massagesubmit').setAttribute("disabled","")
-	} else {
-        document.getElementById('au_massagesubmit').removeAttribute("disabled")
-	}
-	}
-	if(usernameValue === '') {
-		setErrorFor(username, 'name cannot be blank');
-         document.getElementById('au_massagesubmit').setAttribute("disabled","")
-	} else {
-        if(massageValue === '') {
-		setErrorFor(massage, 'message cannot be blank');
-	} else {
-        document.getElementById('au_massagesubmit').removeAttribute("disabled")
-	}
-	}
-}
-
-function setErrorFor(i,message){
-    document.querySelector(".error h2").innerHTML = "ERROR";
-    document.getElementById("error").innerHTML = message;
-    document.querySelector(".error").style.display = "flex";
-}
-
-//======================================//
-const homeImg = document.querySelectorAll(".home-img-item")
- for(let i = 0; i < homeImg.length; i++){
-   homeImg[i].onclick = () =>{
-      let dataimage = homeImg[i].querySelector("img").getAttribute("src");
-      document.querySelector(".home-img").setAttribute("src", dataimage);
-      document.querySelector("#setting").checked = false;
-      document.querySelector(".home-img").classList.remove("homeimgchange");
-      void document.querySelector(".home-img").offsetWidth;
-      document.querySelector(".home-img").classList.add("homeimgchange");
-    }
-}
